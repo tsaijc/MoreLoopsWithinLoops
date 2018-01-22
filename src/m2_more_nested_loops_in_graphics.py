@@ -3,8 +3,8 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Jocelyn Tsai.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -49,12 +49,43 @@ def draw_upside_down_wall(rectangle, n, window):
     and n is nonnegative.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     Some tests are already written for you (above).
     # ------------------------------------------------------------------
+
+    c1 = rectangle.corner_1
+    c2 = rectangle.corner_2
+    w = rectangle.get_width()
+    h = rectangle.get_height()
+    for k in range(n):
+        for j in range(k + 1):
+            y1 = c1.y - h * k
+            y2 = c2.y - h * k
+            x1 = c1.x - w/2 * k + w*j
+            x2 = c2.x - w/2 * k + w*j
+            newrect = rg.Rectangle(rg.Point(x1, y1),rg.Point(x2, y2))
+            newrect.attach_to(window)
+            window.render()
+
 
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
 main()
+
+c1 = rectangle.corner_1
+c2 = rectangle.corner_2
+w = rectangle.get_width()
+h = rectangle.get_height()
+for k in range(n):
+    y1 = h * k + c1.y
+    y2 = h * k + c2.y
+    x1 = ((w * k) / 2) + c1.x
+    x2 = ((w * k) / 2) + c2.x
+    for j in range(n - k):
+        newRect = rg.Rectangle(rg.Point(x1, y1), rg.Point(x2, y2))
+        newRect.attach_to(window)
+        window.render()
+        x1 = x1 + w
+        x2 = x1 + w
